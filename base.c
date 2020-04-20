@@ -1,4 +1,5 @@
 #include <Python.h>
+#include <stdio.h>
 
 static PyObject* new(PyObject *self, PyObject *args) {
     const char* token;
