@@ -10,16 +10,25 @@ static PyObject* new(PyObject *self, PyObject *args) {
     Py_RETURN_NONE;
 }
 
-static char bot_token_docs[] =
-   "new(token): Bot token you want to put here!!\n";
-
-static PyMethodDef new_funcs[] = {
-   {"new", (PyCFunction)new, 
-      METH_VARARGS, bot_token_docs},
-      {NULL}
+static PyMethodDef new_methods[] = { 
+    {   
+        "new", new, METH_VARARGS,
+        "new(token): Bot token you want to put here!!\n";
+    },  
+    {NULL, NULL, 0, NULL}
 };
 
-void initnew(void) {
-   Py_InitModule3("bot", new_funcs,
-                  "Extension module example!");
+
+static struct PyModuleDef new_definition = { 
+    PyModuleDef_HEAD_INIT,
+    "new",
+    "A Python module integrated from C code.",
+    -1, 
+    new_methods
+};
+
+
+PyMODINIT_FUNC PyInit_new(void) {
+    Py_Initialize();
+    return PyModule_Create(&new_definition);
 }
